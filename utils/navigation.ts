@@ -26,10 +26,22 @@ export const sites: SiteLink[] = [
   }
 ];
 
-// Get current site ID based on port number
+// Get current site ID based on hostname or port number
 export const getCurrentSiteId = (): 'corporate' | 'shop' | 'support' => {
-  if (typeof window === 'undefined') return 'corporate';
+  // During SSR or when window is not available, determine site from environment
+  if (typeof window === 'undefined') {
+    // You can also use environment variables here if needed
+    return 'corporate';
+  }
+
+  // Client-side determination
+  const hostname = window.location.hostname;
   
+  if (hostname.includes('corporate')) return 'corporate';
+  if (hostname.includes('shop')) return 'shop';
+  if (hostname.includes('support')) return 'support';
+
+  // Fallback to port-based detection for local development
   const port = window.location.port;
   switch (port) {
     case '3000':
