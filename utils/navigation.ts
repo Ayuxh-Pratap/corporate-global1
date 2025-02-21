@@ -8,19 +8,19 @@ export interface SiteLink {
 export const sites: SiteLink[] = [
   {
     name: 'Corporate',
-    url: 'http://localhost:3000',
+    url: 'https://corporate-global1.vercel.app/',
     description: 'Main corporate website',
     id: 'corporate'
   },
   {
     name: 'Shop',
-    url: 'http://localhost:3001',
+    url: 'https://shop-global2.vercel.app/',
     description: 'E-commerce store',
     id: 'shop'
   },
   {
     name: 'Support',
-    url: 'http://localhost:3002',
+    url: 'https://support-global3.vercel.app/',
     description: 'Help and documentation',
     id: 'support'
   }
