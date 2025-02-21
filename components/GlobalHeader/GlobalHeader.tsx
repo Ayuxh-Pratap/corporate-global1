@@ -34,7 +34,13 @@ export const GlobalHeader: React.FC = () => {
                 className={`flex items-center transition-all duration-300 group relative
                   ${currentSiteId === site.id 
                     ? isScrolled ? 'text-blue-600' : 'text-blue-400'
-                    : isScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-gray-300 hover:text-white'
+                    : isScrolled 
+                      ? 'text-gray-600 hover:text-blue-600' 
+                      : site.id === 'corporate' 
+                        ? 'text-gray-300 hover:text-blue-400'
+                        : site.id === 'shop'
+                        ? 'text-gray-300 hover:text-emerald-400'
+                        : 'text-gray-300 hover:text-indigo-400'
                   }`}
                 onMouseEnter={() => {
                   setHoveredSite(site.id);
@@ -44,11 +50,13 @@ export const GlobalHeader: React.FC = () => {
                 onClick={(e) => handleNavigation(site.url, e)}
               >
                 {/* Site Logo */}
-                <div className="w-8 h-8 relative mr-3">
+                <div className="w-8 h-8 relative mr-3 bg-current">
                   <Image
                     src={`/images/logos/${site.id}-light.svg`}
                     alt={`${site.name} logo`}
                     fill
+                    priority
+                    sizes="32px"
                     className={`transition-all duration-300 ${
                       isScrolled ? 'brightness-0' : 'brightness-100'
                     } ${

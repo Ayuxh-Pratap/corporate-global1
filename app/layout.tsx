@@ -18,6 +18,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href="/images/logos/corporate-light.svg"
+          as="image"
+          type="image/svg+xml"
+        />
+        <link
+          rel="preload"
+          href="/images/logos/shop-light.svg"
+          as="image"
+          type="image/svg+xml"
+        />
+        <link
+          rel="preload"
+          href="/images/logos/support-light.svg"
+          as="image"
+          type="image/svg+xml"
+        />
+      </head>
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col">
           <GlobalHeader />
