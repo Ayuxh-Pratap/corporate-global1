@@ -46,23 +46,17 @@ export const GlobalHeader: React.FC = () => {
                 {/* Site Logo */}
                 <div className="w-8 h-8 relative mr-3">
                   <Image
-                    src={`/images/logos/${site.id}-${isScrolled ? 'dark' : 'light'}.svg`}
+                    src={`/images/logos/${site.id}-light.svg`}
                     alt={`${site.name} logo`}
                     fill
-                    className={`transition-opacity duration-300 ${
-                      hoveredSite === site.id ? 'opacity-0' : 'opacity-100'
-                    }`}
-                  />
-                  <Image
-                    src={`/images/logos/${site.id}-${
-                      site.id === 'corporate' ? 'blue' : 
-                      site.id === 'shop' ? 'emerald' : 
-                      'indigo'
-                    }.svg`}
-                    alt={`${site.name} logo hover`}
-                    fill
-                    className={`transition-opacity duration-300 ${
-                      hoveredSite === site.id ? 'opacity-100' : 'opacity-0'
+                    className={`transition-all duration-300 ${
+                      isScrolled ? 'brightness-0' : 'brightness-100'
+                    } ${
+                      hoveredSite === site.id ? 
+                        site.id === 'corporate' ? 'brightness-0 sepia-[.5] saturate-[50] hue-rotate-[180deg]' :
+                        site.id === 'shop' ? 'brightness-0 sepia-[.5] saturate-[50] hue-rotate-[70deg]' :
+                        'brightness-0 sepia-[.5] saturate-[50] hue-rotate-[220deg]'
+                      : ''
                     }`}
                   />
                 </div>
