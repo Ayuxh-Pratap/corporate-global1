@@ -1,9 +1,11 @@
 'use client';
 
 import React from 'react';
-import { sites, preloadResources, handleNavigation } from '../../utils/navigation';
+import { sites, preloadResources, handleNavigation, getCurrentSiteId } from '../../utils/navigation';
 
 export const GlobalHeader: React.FC = () => {
+  const currentSiteId = getCurrentSiteId();
+
   return (
     <header className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4">
@@ -14,12 +16,22 @@ export const GlobalHeader: React.FC = () => {
               <a
                 key={site.name}
                 href={site.url}
-                className="flex items-center hover:text-gray-300 transition-colors text-sm"
+                className={`flex items-center transition-colors text-sm group relative
+                  ${currentSiteId === site.id 
+                    ? 'text-blue-400' 
+                    : 'text-gray-300 hover:text-white'
+                  }`}
                 onMouseEnter={() => preloadResources(site.url)}
                 onClick={(e) => handleNavigation(site.url, e)}
               >
                 <span className="font-medium">{site.name}</span>
-                <span className="ml-2 text-gray-400 hidden sm:inline">{site.description}</span>
+                <span className={`ml-2 text-gray-400 hidden sm:inline group-hover:text-gray-300
+                  ${currentSiteId === site.id ? 'text-blue-300' : ''}`}>
+                  {site.description}
+                </span>
+                {currentSiteId === site.id && (
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-400 rounded-full" />
+                )}
               </a>
             ))}
           </nav>
